@@ -33,7 +33,7 @@ export const Navbar = () => {
                             </SignInButton>
                         ) : (
                             <>
-                                <Link href="/documents">
+                                <Link href="/ecosystem">
                                     <Button className="text-[0.5rem] py-0.5 flex">
                                         Access Ecosystem
                                     </Button>

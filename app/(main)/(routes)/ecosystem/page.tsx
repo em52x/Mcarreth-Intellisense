@@ -1,4 +1,4 @@
-const DocumentsPage = () => {
+const EcosystemPage = () => {
     return(
         <div>
             This is a protected page
@@ -6,4 +6,4 @@ const DocumentsPage = () => {
     );
 }
 
-export default DocumentsPage
+export default EcosystemPage
