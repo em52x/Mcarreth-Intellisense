@@ -6,6 +6,10 @@ import { useEffect } from "react";
 import { useConvexAuth } from "convex/react";
 import { SignInButton } from "@clerk/clerk-react";
 import Link from "next/link";
+import Lottie from 'lottie-react';
+import darkanimationData from '@/public/dark-nobackgoud-lottie.json';
+import ligthanimationData from '@/public/light-nobackgoud.json';
+import Image from 'next/image';
 
 export const Heading = () => {
     const { isAuthenticated, isLoading } = useConvexAuth();
@@ -20,19 +24,40 @@ export const Heading = () => {
     return (
         <div className="max-w-3xl space-y-4 flex flex-col items-center justify-center min-h-screen">
             <h1 className="text-1xl sm:text-2xl md:text-2xl flex flex-col items-center text-center justify-center font-semibold">
-                Your Ideas, Document, Plans. unified. Welcome to <span className="underline font-bold"> Mcarreth Intellisense</span>
+            Unify, Optimize, and Empower Your Marketing Initiatives  
             </h1>
+            
 
-            <div className="w-full flex items-center justify-center">
-                <iframe
-                    src="https://lottie.host/embed/211fd42f-70f0-468d-9816-8dbba2d3a76b/mW7fRnhiCP.json"
-                    style={{ width: '60%', height: '100px' }}
-                    title="Lottie Animation"
-                ></iframe>
+            <div className="hidden dark:block w-full  items-center justify-center">
+                <Lottie animationData={darkanimationData} style={{ width: '100%', height: '200px' }} />
             </div>
+            <div className="dark:hidden  w-full  items-center justify-center">
+                <Lottie animationData={ligthanimationData} style={{ width: '100%', height: '200px' }} />
+            </div>
+            <div className="flex items-center justify-center">
+            <Image 
+                    src="/logo.png" 
+                    height="30" 
+                    width="30" 
+                    alt="Logo" 
+                    className="ml-1 dark:hidden"
+                />
+                <Image 
+                    src="/logo-dark.png" 
+                    height="30" 
+                    width="30" 
+                    alt="Logo" 
+                    className="ml-1 hidden dark:block"
+                />
+                <h1 className="ml-1  font-bold text-1xl sm:text-2xl md:text-2xl">Mcarreth Intellisense</h1>
+                
+            </div>
+           
 
             <h3 className="text-base flex flex-col items-center text-center justify-center font-medium">
-                Conected workspace where better, faster work happens
+            The Ultimate Digital Marketing Ecosystem for Agencies and Professionals
+
+
             </h3>
             <div className="flex justify-center text-[0.5rem]">
                 {isLoading && <p>Loading...</p>}

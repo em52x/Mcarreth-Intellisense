@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, LayoutDashboard, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -12,10 +12,15 @@ import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { useUser } from "@clerk/clerk-react";
 import { toast } from 'sonner';
+import { 
+  Popover,
+  PopoverTrigger,
+  PopoverContent } from "@/components/ui/popover";
 
 
 import { Item } from "./item";
 import { DocumentList } from "./document-list";
+import { TrashBox } from "./trash-box";
 
 export const Navigation = () => {
     const pathname = usePathname();
@@ -156,14 +161,22 @@ export const Navigation = () => {
               onClick={() => {}}
               />
           </div>
-          <div className="mt-4">
-            <p>Pages</p>
+          <div>
+              <Item 
+                onClick={handleCreate }
+                label="New Document"
+                icon={PlusCircle}
+                />
           </div>
-
-        
-          <div className="mt-4">
-            <p>Pages</p>
+          <div >
+              <Item 
+                onClick={() => {}}
+                label="Dashboard"
+                icon={LayoutDashboard}
+                
+                />
           </div>
+          
                 
           {/* <div className="mt-4 flex items-center justify-between">  
             <p className="mr-1 mb-1">Documents</p>  
@@ -172,17 +185,31 @@ export const Navigation = () => {
               Create a Document
             </Button>
           </div> */}
-          <div>
-              <Item 
-                onClick={handleCreate }
-                label="New Document"
-                icon={PlusCircle}
-                />
-          </div>
+          
           <div className="mt-4">
             <DocumentList />
+             <Item 
+             onClick={handleCreate}
+             icon={Plus}
+             label="add a document"
+             />
 
           </div>
+
+          <Popover>
+            <PopoverTrigger className="w-full mt-4">
+              <Item label="Trash" icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent
+            className="p-0 w-72"
+            side={isMobile ? "right" : "right"}
+            >
+              <TrashBox/>
+
+            </PopoverContent>
+          </Popover>
+
+
           <div
             onMouseDown={handleMouseDown}
             onClick={resetWidth}

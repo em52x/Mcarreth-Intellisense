@@ -27,7 +27,7 @@ interface ItemProps {
     level?: number;
     onExpand?: () => void;
     label: string;
-    onClick: () => void; 
+    onClick?: () => void; 
     icon: LucideIcon;
 }
 
@@ -82,7 +82,7 @@ export const Item = ({
                 if (!expanded) {
                     onExpand?.();
                 }
-                router.push(`/documents/&{documentId}`);
+                /*router.push(`/documents/&{documentId}`);*/
             });
             toast.promise(promise, {
                 loading: "Creating a new document...",
@@ -98,7 +98,7 @@ export const Item = ({
             style={{ paddingLeft: level ? `${(level * 12) + 12}px` : "12px"}}
 
             className={cn(
-                "group min-h-[27px] text-sm py-1 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-small",
+                "group min-h-[27px] text-xs py-1 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-small",
                 active && "bg-primary/5 text-primary"
             )}
         >
@@ -116,7 +116,7 @@ export const Item = ({
             )}
             
             {documentIcon ?(
-                <div className="shrink-0 mr-2 text-[18px]">
+                <div className="shrink-0 mr-2 text-[8px]">
                     {documentIcon}
                 </div>
             ) : (
@@ -159,7 +159,7 @@ export const Item = ({
                                 Delete
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <div className="h-4 w-4 mr-2">
+                            <div className="h-4 w-4 mr-2 text-xs whitespace-nowrap">
                                 Last edited by: {user?.fullName}
                             </div>                            
                         </DropdownMenuContent>                        
