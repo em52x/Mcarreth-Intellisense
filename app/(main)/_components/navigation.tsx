@@ -1,21 +1,38 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon } from "lucide-react";
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { UserItem } from "./user-item";
+import { Button } from "@/components/ui/button";
+import { create } from "@/convex/documents";
+import { api } from "@/convex/_generated/api";
+import { useMutation } from "convex/react";
+import { useUser } from "@clerk/clerk-react";
+import { toast } from 'sonner';
+
+
+import { Item } from "./item";
+import { DocumentList } from "./document-list";
 
 export const Navigation = () => {
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
+
+    const { user } = useUser();
+    const create = useMutation(api.documents.create);
 
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
     const navbarRef = useRef<ElementRef<"div">>(null);
     const [isResetting, setIsRessetting] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(isMobile);
+
+    
+
+    
 
     useEffect(() => {
       if (isMobile) {
@@ -88,6 +105,18 @@ export const Navigation = () => {
       }
 
     };
+
+     
+    const handleCreate =  () => {
+      const promise = create({ title: "Untitled" });
+
+      toast.promise(promise, {
+        loading: "Creating a new document...",
+        success: "New document created!",
+        error: "Failed to create a new document.",
+        
+      });
+    };
     
 
 
@@ -115,12 +144,44 @@ export const Navigation = () => {
           <div>
             {/* <p>Action items</p> */}
             <UserItem />
+            <Item
+              label="Search"
+              icon={Search}
+              isSearch
+              onClick={() => {}}
+              />
+              <Item
+              label="Settings"
+              icon={Settings}
+              onClick={() => {}}
+              />
           </div>
           <div className="mt-4">
             <p>Pages</p>
           </div>
+
+        
           <div className="mt-4">
-            <p>Documents</p>
+            <p>Pages</p>
+          </div>
+                
+          {/* <div className="mt-4 flex items-center justify-between">  
+            <p className="mr-1 mb-1">Documents</p>  
+            <Button onClick={onCreate} variant="ghost" className="text-[0.5rem] mx-4 h-5 mt-">
+              <PlusCircle className="h-4 w-4 mr-1" />
+              Create a Document
+            </Button>
+          </div> */}
+          <div>
+              <Item 
+                onClick={handleCreate }
+                label="New Document"
+                icon={PlusCircle}
+                />
+          </div>
+          <div className="mt-4">
+            <DocumentList />
+
           </div>
           <div
             onMouseDown={handleMouseDown}
