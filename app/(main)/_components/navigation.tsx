@@ -12,6 +12,7 @@ import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { useUser } from "@clerk/clerk-react";
 import { toast } from 'sonner';
+import { useSearch } from "@/hooks/use-search";
 import { 
   Popover,
   PopoverTrigger,
@@ -23,6 +24,7 @@ import { DocumentList } from "./document-list";
 import { TrashBox } from "./trash-box";
 
 export const Navigation = () => {
+    const search = useSearch();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -153,7 +155,7 @@ export const Navigation = () => {
               label="Search"
               icon={Search}
               isSearch
-              onClick={() => {}}
+              onClick={search.onOpen}
               />
               <Item
               label="Settings"
