@@ -54,7 +54,7 @@ export const TrashBox = () => {
         });
 
         if (params.documentId === doocumentId) {
-            router.push("/documents");
+            router.push("/ecosystem");
         }
     };
 
