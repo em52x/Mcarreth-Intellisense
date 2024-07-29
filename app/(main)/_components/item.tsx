@@ -82,7 +82,7 @@ export const Item = ({
                 if (!expanded) {
                     onExpand?.();
                 }
-                router.push(`/documents/&{documentId}`)
+                router.push(`/ecosystem/&{documentId}`)
             });
             toast.promise(promise, {
                 loading: "Creating a new document...",

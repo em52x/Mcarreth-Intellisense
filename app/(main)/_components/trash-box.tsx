@@ -25,7 +25,7 @@ export const TrashBox = () => {
     });
 
     const onClick =(documentId: string) => {
-        router.push(`/documents/${documentId}`);
+        router.push(`/ecosystem/${documentId}`);
     };
 
     const onRestore = (
