@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, LayoutDashboard, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
+import { ChevronsLeft, LayoutDashboard, MenuIcon, Plus, PlusCircle, Search, SettingsIcon, Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -22,8 +22,10 @@ import {
 import { Item } from "./item";
 import { DocumentList } from "./document-list";
 import { TrashBox } from "./trash-box";
+import { useSettings } from "@/hooks/use-settings";
 
 export const Navigation = () => {
+    const Settings = useSettings();
     const search = useSearch();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
@@ -159,8 +161,8 @@ export const Navigation = () => {
               />
               <Item
               label="Settings"
-              icon={Settings}
-              onClick={() => {}}
+              icon={SettingsIcon} // Cambiar 'Settings' a 'SettingsIcon'
+              onClick={Settings.onOpen}
               />
           </div>
           <div>
