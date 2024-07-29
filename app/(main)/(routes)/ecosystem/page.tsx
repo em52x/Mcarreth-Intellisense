@@ -9,4 +9,4 @@ const EcosystemPage = () => {
     );
 }
 
-export default EcosystemPage
+export default EcosystemPage 

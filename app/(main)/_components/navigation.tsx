@@ -1,8 +1,8 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, LayoutDashboard, MenuIcon, Plus, PlusCircle, Search, SettingsIcon, Trash } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { ChevronsLeft, LayoutDashboard, MenuIcon, Plus, PlusCircle, Search, Settings, Settings2Icon, Trash } from "lucide-react";
+import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { UserItem } from "./user-item";
@@ -23,8 +23,12 @@ import { Item } from "./item";
 import { DocumentList } from "./document-list";
 import { TrashBox } from "./trash-box";
 import { useSettings } from "@/hooks/use-settings";
+import { Navbar } from "./navbar";
+
+
 
 export const Navigation = () => {
+    const params = useParams();
     const Settings = useSettings();
     const search = useSearch();
     const pathname = usePathname();
@@ -161,7 +165,7 @@ export const Navigation = () => {
               />
               <Item
               label="Settings"
-              icon={SettingsIcon} // Cambiar 'Settings' a 'SettingsIcon'
+              icon={Settings2Icon} // Cambiar 'Settings' a 'SettingsIcon'
               onClick={Settings.onOpen}
               />
           </div>
@@ -231,9 +235,15 @@ export const Navigation = () => {
               isMobile && "left-0 w-full"
             )}
         >
+          {!!params.documentId ? (
+            <Navbar
+            isCollapsed={isCollapsed}
+            onResetWhith={resetWidth} />
+          ) : (
           <nav className="bg-transparent px-3 py-2 w-full">
             {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
           </nav>
+          )}
 
         </div>
         </>
