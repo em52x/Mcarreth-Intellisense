@@ -25,7 +25,7 @@ import { TrashBox } from "./trash-box";
 import { useSettings } from "@/hooks/use-settings";
 import { Navbar } from "./navbar";
 
-
+import { useRouter } from "next/navigation";
 
 export const Navigation = () => {
     const params = useParams();
@@ -33,6 +33,7 @@ export const Navigation = () => {
     const search = useSearch();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
+    const router = useRouter();
 
     const { user } = useUser();
     const create = useMutation(api.documents.create);
@@ -178,7 +179,7 @@ export const Navigation = () => {
           </div>
           <div >
               <Item 
-                onClick={() => {}}
+                onClick={() => router.push('/ecosystem/dashboard')}
                 label="Dashboard"
                 icon={LayoutDashboard}
                 
@@ -238,11 +239,11 @@ export const Navigation = () => {
           {!!params.documentId ? (
             <Navbar
             isCollapsed={isCollapsed}
-            onResetWhith={resetWidth} />
+            onResetWidth={resetWidth} />
           ) : (
-          <nav className="bg-transparent px-3 py-2 w-full">
-            {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
-          </nav>
+            <nav className="bg-transparent px-3 py-2 w-full">
+             {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
+            </nav>
           )}
 
         </div>
