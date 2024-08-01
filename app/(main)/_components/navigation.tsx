@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, LayoutDashboard, MenuIcon, Plus, PlusCircle, Search, Settings, Settings2Icon, Trash } from "lucide-react";
+import { ChevronsLeft, LayoutDashboard, MenuIcon, Origami, Plus, PlusCircle, Search, Settings, Settings2Icon, Trash } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -57,7 +57,7 @@ export const Navigation = () => {
     }, [isMobile]);
 
     useEffect(() => {
-      if (isMobile) {
+      if (isMobile || pathname === '/ecosystem/composer') {
         collapse();
       }
     }, [pathname, isMobile]);
@@ -182,6 +182,14 @@ export const Navigation = () => {
                 onClick={() => router.push('/ecosystem/dashboard')}
                 label="Dashboard"
                 icon={LayoutDashboard}
+                
+                />
+          </div>
+          <div >
+              <Item 
+                onClick={() => router.push('/ecosystem/composer')}
+                label="Composer"
+                icon={Origami}
                 
                 />
           </div>
