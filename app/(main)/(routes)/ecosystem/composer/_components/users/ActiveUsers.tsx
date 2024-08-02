@@ -3,14 +3,17 @@ import { Avatar } from "./Avatar";
 
 import styles from "./index.module.css";
 import { generateRandomName } from "@/lib/utils";
+import { useMemo } from "react";
 
 const ActiveUsers = () => {
   const users = useOthers();
   const currentUser = useSelf();
   const hasMoreUsers = users.length > 3;
 
-  return (
-    <div className="flex items-center justify-center gap-1">
+  const memoizedUsers = useMemo(() =>{
+    return (
+
+      <div className="flex items-center justify-center gap-1 py-2">
       <div className="flex pl-3">
 
         {currentUser && (          
@@ -30,6 +33,10 @@ const ActiveUsers = () => {
         
       </div>
     </div>
-  );
+    )    
+  }, [users.length])
+
+  return memoizedUsers;
+ 
 }
 export default ActiveUsers;

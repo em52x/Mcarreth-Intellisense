@@ -192,6 +192,7 @@ export const shortcuts = [
     shortcut: "⌘ + Y",
   },
   {
+    
     key: "4",
     name: "Reactions",
     shortcut: "E",

@@ -9,6 +9,8 @@ import Live from "./_components/live";
 import { handleCanvasMouseDown, handleResize, initializeFabric } from "@/lib/canvas";
 import { ActiveElement } from "./types/type";
 import Tooltipnavegation from "./_components/Tooltipnavegation";
+import LeftSidebar from "./_components/LeftSidebar";
+import RightSidebar from "./_components/RightSidebar";
 
  
 
@@ -59,14 +61,17 @@ export const ComposerPage = () => {
                    handleActiveElement={handleActiveElement}
                    
                     />
-            <div className="h-screen overflow-hidden" >  
+            <main className="h-screen overflow-hidden" >  
                 <section className="flex h-full flex-row">
+                    <LeftSidebar />
                    
                    <Live canvasRef={canvasRef}/>
-                  
+
+
+                   <RightSidebar />               
                    
                 </section >             
-            </div >
+            </main >
                     
         </Room >
     );
