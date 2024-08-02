@@ -4,10 +4,11 @@ import { useQuery } from "convex/react";
 import { useParams } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { MenuIcon } from "lucide-react";
+// import { MenuIcon } from "lucide-react"; // Eliminar la importación de MenuIcon
 import { Title } from "./title";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
+import { memo } from "react";
 
 interface NavbarProps {
     isCollapsed: boolean;
@@ -20,9 +21,6 @@ export const Navbar = ({
 }: NavbarProps) => {
     const params = useParams();
     const documentId = params.documentId;
-
-
-
 
     const document = useQuery(api.documents.getById, {
         documentId: params.documentId as Id<"documents">,
@@ -44,22 +42,22 @@ export const Navbar = ({
 
     return (
         <>
-          <nav className="bg-background dark:bg-[#1F1F1F] px-3 py-2
-          w-full flex items-center gap-x-4 ">
-            {isCollapsed && (
-                <MenuIcon
-                role="button"
-                onClick={onResetWidth}
-                className="h-6 w-6 text-muted-foreground" 
-                />
-            )}
-            <div className="flex w-full items-center justify-between ">
-               <Title initialData={document} />
-               <div className="flex items-center gap-x-2">
-                <Menu documentId={document._id} />
-               </div>
+          <nav className="flex flex-row select-none items-center
+    justify-between gap-4  bg-[#F5F5F5] dark:bg-[#262626] px-5 text-white">
+            {/* < span className="flex items-center gap-2"> // Eliminar el span
+              <MenuIcon 
+                width={35} height={35} className="ml-[20px] stroke-[#262626] dark:stroke-[#F5F5F5]" />
+              <div className="dark:text-[#F5F5F5] text-[#262626]">
+                <Title initialData={document} />
+              </div>
+            </span> */}
+            <div className="dark:text-[#F5F5F5] text-[#262626]">
+                <Title initialData={document} />
             </div>
-          </nav >
+            <div >
+              <Menu documentId={document._id} />
+            </div>
+          </nav>
 
 
           {/*este es el banner rojo para cuando esta borrado el doc*/}
@@ -68,4 +66,8 @@ export const Navbar = ({
           )}
         </>
     )
-}
+};
+
+export default memo(Navbar, (prevProps, nextProps) => {
+    return prevProps.isCollapsed === nextProps.isCollapsed;
+});

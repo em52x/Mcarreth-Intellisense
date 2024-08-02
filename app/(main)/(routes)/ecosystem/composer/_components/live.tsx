@@ -1,4 +1,4 @@
-import { useBroadcastEvent, useEventListener, useMyPresence, useOthers, } from "@/liveblocks.config"
+import { useBroadcastEvent, useEventListener, useMyPresence, useOthers, } from "@liveblocks/react/suspense"
 import LiveCursors from "./cursor/LiveCursors"
 import { useCallback, useEffect, useState } from "react";
 import CursorChat from "./cursor/CursorChat";
@@ -6,12 +6,14 @@ import { CursorMode, Reaction, ReactionEvent  } from "../types/type";
 import ReactionSelector from "./reaction/ReactionButton";
 import FlyingReaction from "./reaction/FlyingReaction";
 import useInterval from "@/hooks/useInterval";
+import Tooltipnavegation from "./Tooltipnavegation";
 
 type Props = {canvasRef: React.MutableRefObject<HTMLCanvasElement | null>;}
 const Live = ({canvasRef}: Props) => {
     
     const others = useOthers();
-    const [{ cursor }, myPresence, updateMyPresence] = useMyPresence() as any;
+    const [myPresence, updateMyPresence] = useMyPresence() as any; // edit 1
+    const [{ cursor }, , ] = useMyPresence() as any; // edit 2
     const [cursorState, setCursorState] = useState ({
         mode: CursorMode.Hidden,
     })
@@ -174,6 +176,8 @@ const Live = ({canvasRef}: Props) => {
     className="h-[100vh] w-full flex justify-center items-center text-center"
     >
         <canvas ref={canvasRef} />
+        
+        
 
       {/* Render the reactions */}
      {reactions.map((reaction) => (
@@ -201,9 +205,15 @@ const Live = ({canvasRef}: Props) => {
           <ReactionSelector
             setReaction={setReaction}
           />
+          
         )}
         {<LiveCursors others={others} />}
+        <div className="absolute bottom-0 left-0 w-full flex ">
+          <Tooltipnavegation />
+        </div>
     </div>
+    
+    
   )
 }
 

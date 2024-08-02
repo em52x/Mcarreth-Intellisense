@@ -23,7 +23,7 @@ import { Item } from "./item";
 import { DocumentList } from "./document-list";
 import { TrashBox } from "./trash-box";
 import { useSettings } from "@/hooks/use-settings";
-import { Navbar } from "./navbar";
+// import { Navbar } from "./navbar"; // Eliminar la importación de Navbar
 
 import { useRouter } from "next/navigation";
 
@@ -236,7 +236,7 @@ export const Navigation = () => {
           
           />
           
-        </aside>
+          </aside>
         <div
             ref={navbarRef}
             className={cn("absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
@@ -244,15 +244,18 @@ export const Navigation = () => {
               isMobile && "left-0 w-full"
             )}
         >
-          {!!params.documentId ? (
-            <Navbar
-            isCollapsed={isCollapsed}
-            onResetWidth={resetWidth} />
+          {/* {!!params.documentId ? (
+             <Navbar
+             isCollapsed={isCollapsed}
+             onResetWidth={resetWidth} />
           ) : (
-            <nav className="bg-transparent px-3 py-2 w-full">
+            <nav className="bg-transparent px-3 py-4 w-full">
              {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
             </nav>
-          )}
+          )} */}
+          <nav className="bg-transparent px-3 py-4 w-full">
+             {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-foreground" />}
+          </nav>
 
         </div>
         </>

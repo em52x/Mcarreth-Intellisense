@@ -2,12 +2,13 @@
 import { fabric } from "fabric";
 import { useEffect, useRef, useState } from "react";
 import { Room } from "./Room";
-import LeftSidebar from "./_components/LeftSidebar";
+
 import Navbar from "./_components/Navbar";
-import RightSidebar from "./_components/RightSidebar";
+
 import Live from "./_components/live";
 import { handleCanvasMouseDown, handleResize, initializeFabric } from "@/lib/canvas";
 import { ActiveElement } from "./types/type";
+import Tooltipnavegation from "./_components/Tooltipnavegation";
 
  
 
@@ -53,19 +54,20 @@ export const ComposerPage = () => {
 
     return (
         <Room>         
-            <div className="h-screen overflow-hidden" >  
-                   <Navbar
+            <Navbar
                    activeElement={activeElement}
                    handleActiveElement={handleActiveElement}
+                   
                     />
-
-
+            <div className="h-screen overflow-hidden" >  
                 <section className="flex h-full flex-row">
-                   <LeftSidebar />
+                   
                    <Live canvasRef={canvasRef}/>
-                   <RightSidebar />  
+                  
+                   
                 </section >             
-            </div >          
+            </div >
+                    
         </Room >
     );
               

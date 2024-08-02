@@ -2,74 +2,26 @@
 
 import Image from "next/image";
 import { memo } from "react";
-
-import { navElements } from "../constants";
-import { ActiveElement } from "../types/type";
+import { NavbarProps } from "../types/type";
 import ActiveUsers from "./users/ActiveUsers";
-import { Button, } from "@/components/ui/button";
+import { Origami } from "lucide-react";
 
-import ShapesMenu from "./ShapesMenu";
-import { NewThread } from "./comments/NewThread";
-
-const Navbar = ({ activeElement, imageInputRef, handleImageUpload, handleActiveElement }: NavbarProps) => {
-  const isActive = (value: string | Array<ActiveElement>) =>
-    (activeElement && activeElement.value === value) ||
-    (Array.isArray(value) && value.some((val) => val?.value === activeElement?.value));
+const Navbar = ({ activeElement }: NavbarProps) => {
 
   return (
-    <nav className="flex select-none items-center justify-between gap-4 bg-primary-black px-5 text-white">
-      <Image src="/assets/logo.svg" alt="FigPro Logo" width={58} height={20} />
-
-      <ul className="flex flex-row">
-        {navElements.map((item: ActiveElement | any) => (
-          <li
-            key={item.name}
-            onClick={() => {
-              if (Array.isArray(item.value)) return;
-              handleActiveElement(item);
-            }}
-            className={`group px-2.5 py-5 flex justify-center items-center
-            ${isActive(item.value) ? "bg-primary-green" : "hover:bg-primary-grey-200"}
-            `}
-          >
-            {/* If value is an array means it's a nav element with sub options i.e., dropdown */}
-            {Array.isArray(item.value) ? (
-              <ShapesMenu
-                item={item}
-                activeElement={activeElement}
-                imageInputRef={imageInputRef}
-                handleActiveElement={handleActiveElement}
-                handleImageUpload={handleImageUpload}
-              />
-            ) : item?.value === "comments" ? (
-              // If value is comments, trigger the NewThread component
-              <NewThread>
-                <Button className="relative w-5 h-5 object-contain">
-                  <Image
-                    src={item.icon}
-                    alt={item.name}
-                    fill
-                    className={isActive(item.value) ? "invert" : ""}
-                  />
-                </Button>
-              </NewThread>
-            ) : (
-              <Button className="relative w-5 h-5 object-contain">
-                <Image
-                  src={item.icon}
-                  alt={item.name}
-                  fill
-                  className={isActive(item.value) ? "invert" : ""}
-                />
-              </Button>
-            )}
-          </li>
-        ))}
-      </ul>
-
+    <nav className="flex flex-row select-none items-center
+    justify-between gap-4  bg-[#F5F5F5] dark:bg-[#262626] px-5 text-white">
+    < span className="flex items-center gap-2">
+      <Origami 
+    width={35} height={35} className="ml-[20px] stroke-[#262626] dark:stroke-[#F5F5F5]" />
+    <div className="dark:text-[#F5F5F5] text-[#262626]">Composer</div>
+    </span>
+    <div >
       <ActiveUsers />
-    </nav>
+    </div>
+    </nav>  
   );
 };
 
-export default memo(Navbar, (prevProps, nextProps) => prevProps.activeElement === nextProps.activeElement);
+export default memo(Navbar, (prevProps, nextProps) =>
+prevProps.activeElement === nextProps.activeElement);

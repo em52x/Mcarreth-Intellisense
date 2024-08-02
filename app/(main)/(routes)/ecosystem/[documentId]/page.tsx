@@ -13,6 +13,7 @@ import { JSONContent } from "novel";
 import { useState } from "react";
 import { defaultValue } from "@/app/default-value";
 import { Editor2 } from "@/components/editor";
+import Navbar from "@/app/(main)/_components/navbar";
 
 
 
@@ -54,6 +55,7 @@ const DocumentIdPage = ({
 
   return (
     <div className="pb-40">
+      <Navbar/>
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-full mx-auto">
          <Toolbar initialData={document} />

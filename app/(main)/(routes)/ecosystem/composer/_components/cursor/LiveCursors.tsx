@@ -5,10 +5,11 @@ import { COLORS } from '../../constants';
 
 const LiveCursors = ({ others }: LiveCursorProps) => {
   // Verificar si others es un arreglo
-  if (!Array.isArray(others)) {
-    console.error('others is not an array:', others);
-    return null;
-  }
+
+  others.map(({ connectionId, presence}) =>{
+    if(!presence) return null;
+  })
+
 
   return (
     <>
