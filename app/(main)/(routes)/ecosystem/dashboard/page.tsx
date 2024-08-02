@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const DashboardPage = () => {
   return (
     <div className="text-white w-full h-full flex flex-col gap-y-2 p-2">
@@ -7,6 +9,11 @@ const DashboardPage = () => {
       <header className="w-full p-4 h-10 dark:border-white text-center text-gray-600 dark:text-white">
         Dashboard
       </header>
+      <div>
+      <Image src="/assets/select.svg" alt="Select Icon" width="20" height="20"></Image>
+      </div>
+
+      
       
       {/* Contenido del Dashboard */}
       <div className="flex flex-col flex-grow gap-y-2">

@@ -1,5 +1,5 @@
 import { CursorChatProps, CursorMode	 } from "../../types/type"; 
-import CursorSVG from "../../assets/CursorSVG";
+import CursorSVG from "../../../../../../../public/assets/CursorSVG";
 
 const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: CursorChatProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

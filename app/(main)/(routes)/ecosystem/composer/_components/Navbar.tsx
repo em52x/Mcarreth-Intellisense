@@ -18,7 +18,7 @@ const Navbar = ({ activeElement, imageInputRef,
     (Array.isArray(value) && value.some((val) => val?.value === activeElement?.value));
 
   return (
-    <nav className="flex  flex-row select-none items-center
+    <nav className="flex  flex-row select-none items-center 
     justify-between gap-4  bg-[#F5F5F5] dark:bg-[#262626] px-5 text-white">
     < span className="flex items-center gap-2">
       <Origami 
@@ -26,13 +26,13 @@ const Navbar = ({ activeElement, imageInputRef,
     <div className="dark:text-[#F5F5F5] text-[#262626]">Composer</div>
     </span>
 
-    <ul className="flex flex-row">
+    <ul className="flex flex-row z-[99999]">
       {navElements.map((item: ActiveElement | any) => (
         <li
           key={item.name}
           onClick={() => {
             if (Array.isArray(item.value)) return;
-            {{ handleActiveElement(item); }} // Corrección: Se agregó un punto y coma al final de la línea
+             handleActiveElement(item);  // Corrección: Se agregó un punto y coma al final de la línea
           }}
           className={`group px-2.5 py-5 flex justify-center items-center
             ${isActive(item.value) ? "bg-primary-green" : "hover:bg-primary-grey-200"}`}
@@ -45,9 +45,9 @@ const Navbar = ({ activeElement, imageInputRef,
                 handleActiveElement={handleActiveElement}
                 handleImageUpload={handleImageUpload}
                 />
-          ): item?.value === `coments` ? (
+          ): item?.value === 'comments' ? (
             <NewThread>
-              <Button className="relative w-5 h-5 object-contain">
+              <Button className="relative w-8 h-8 object-contain bg-transparent">
                   <Image
                     src={item.icon}
                     alt={item.name}
@@ -57,11 +57,11 @@ const Navbar = ({ activeElement, imageInputRef,
                 </Button>
             </NewThread>
           ): (
-            <Button>
+            <Button className="relative w-7 h-7 object-contain bg-transparent ">
               <Image
                   src={item.icon}
                   alt={item.name}
-                  fill
+                  fill                  
                   className={isActive(item.value) ? "invert" : ""}
                 />
             </Button>

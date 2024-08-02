@@ -29,7 +29,7 @@ export const ConfirmModal = ({
     onConfirm();
   };
   return (
-    <AlertDialog>
+    <AlertDialog  >
       <AlertDialogTrigger onClick={(e) => e.stopPropagation()} asChild>
         {children}
       </AlertDialogTrigger>
