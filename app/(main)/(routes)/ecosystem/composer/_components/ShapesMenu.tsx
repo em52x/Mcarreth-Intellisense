@@ -51,7 +51,7 @@ const ShapesMenu = ({
                 />
                 <p
                   className={`  ${
-                    activeElement.value === elem?.value ? "text-primary-black" : "text-white"
+                    activeElement.value === elem?.value ? "text-black" : "text-white"
                   }`}
                 >
                   {elem?.name}

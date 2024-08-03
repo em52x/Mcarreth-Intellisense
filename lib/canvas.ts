@@ -10,7 +10,7 @@ import {
   CanvasPathCreated,
   CanvasSelectionCreated,
   RenderCanvas,
-} from "@/types/type";
+} from "@/app/(main)/(routes)/ecosystem/composer/types/type";
 import { defaultNavElement } from "@/app/(main)/(routes)/ecosystem/composer/constants";
 import { createSpecificShape } from "./shapes";
 
@@ -103,7 +103,7 @@ export const handleCanvasMouseDown = ({
 };
 
 // handle mouse move event on canvas to draw shapes with different dimensions
-export const handleCanvaseMouseMove = ({
+export const handleCanvasMouseMove = ({
   options,
   canvas,
   isDrawing,
