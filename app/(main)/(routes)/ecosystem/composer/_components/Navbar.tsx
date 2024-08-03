@@ -47,7 +47,7 @@ const Navbar = ({ activeElement, imageInputRef,
                 />
           ): item?.value === 'comments' ? (
             <NewThread>
-              <Button className="relative w-8 h-8 object-contain bg-transparent">
+              <Button className="relative w-7 h-7 object-contain bg-transparent">
                   <Image
                     src={item.icon}
                     alt={item.name}
@@ -57,7 +57,7 @@ const Navbar = ({ activeElement, imageInputRef,
                 </Button>
             </NewThread>
           ): (
-            <Button className="relative w-7 h-7 object-contain bg-transparent ">
+            <Button className="relative w-7 h-7 object-contain bg-transparent   ">
               <Image
                   src={item.icon}
                   alt={item.name}

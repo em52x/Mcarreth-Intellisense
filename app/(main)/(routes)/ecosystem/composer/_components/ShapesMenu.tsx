@@ -20,7 +20,7 @@ const ShapesMenu = ({
     <>
       <DropdownMenu >
         <DropdownMenuTrigger asChild>
-        <Button className="relative h-10 w-10 object-contain bg-transparent" onClick={() => handleActiveElement(item)} >
+        <Button className="relative h-7 w-7 object-contain bg-transparent" onClick={() => handleActiveElement(item)} >
             <Image
               src={isDropdownElem ? activeElement.icon : item.icon}
               alt={item.name}
