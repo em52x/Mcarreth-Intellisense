@@ -8,7 +8,7 @@ import { ActiveElement } from "./types/type";
 import Tooltipnavegation from "./_components/Tooltipnavegation";
 import LeftSidebar from "./_components/LeftSidebar";
 import RightSidebar from "./_components/RightSidebar";
-import { useMutation, useStorage } from "@/liveblocks.config";
+import { useMutation, useStorage, LiveMap } from "@/liveblocks.config";
 
 export const ComposerPage = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);

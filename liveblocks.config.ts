@@ -52,6 +52,15 @@ export type ThreadMetadata = {
 };
 
 export const {
+
+} = createRoomContext<
+  Presence,
+  Storage
+  /* UserMeta, RoomEvent, ThreadMetadata */
+>(client);
+
+
+export const {
   suspense: {
     RoomProvider,
     useRoom,
@@ -93,3 +102,5 @@ export const {
 } = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(client, {
   async resolveUsers({ userIds }) { return []},
   async resolveMentionSuggestions({ text, roomId }) { return [] },});
+
+  export { LiveMap };
